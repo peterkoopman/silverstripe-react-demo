@@ -1,0 +1,7 @@
+.product__tabs {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 8px solid #000000;
+  margin: 0;
+}

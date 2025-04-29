@@ -1,0 +1,31 @@
+.tab {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  margin: 0 5px;
+}
+
+.tab:first-child {
+  margin-left: 0;
+}
+
+.tab:last-child {
+  margin-right: 0;
+}
+
+.tab a {
+  color: #000;
+  background-color: #ffe200;
+  line-height: 2.75rem;
+  padding: 0 0.5em;
+  border-radius: 4px 4px 0 0;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+.tab a.selected {
+  background-color: #000;
+  color: #fff;
+}

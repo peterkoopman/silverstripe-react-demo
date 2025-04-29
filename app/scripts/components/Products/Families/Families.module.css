@@ -1,0 +1,19 @@
+.name {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  margin: 2em 0;
+}
+
+.products {
+  padding: 2rem 0;
+}
+
+.products__list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-left: -0.5%;
+  margin-right: -0.5%;
+}

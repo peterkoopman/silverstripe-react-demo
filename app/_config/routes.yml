@@ -1,0 +1,9 @@
+---
+Name: 'routes'
+After:
+  - '#rootroutes'
+  - '#coreroutes'
+---
+SilverStripe\Control\Director:
+  rules:
+    'api/products//$Action/$ID': 'ProductApp\Controllers\ProductController'

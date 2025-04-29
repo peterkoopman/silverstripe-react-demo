@@ -1,0 +1,18 @@
+# ignore all environment files
+.env
+
+# node_module files
+/node_modules/
+
+# ignore assets folder
+/public/assets
+/public/_resources/
+/public/_graphql/
+/dist/
+/.graphql-generated
+
+# ignore docker data volume & php.ini
+/.docker/
+
+/vendor/
+
