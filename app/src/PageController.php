@@ -36,6 +36,7 @@ namespace {
             // See: https://docs.silverstripe.org/en/developer_guides/templates/requirements/
             Requirements::javascript('_resources/dist/js/main.jsx');
             Requirements::css('_resources/dist/css/styles.css');
+            Requirements::css('_resources/dist/css/main.css');
         }
     }
 }

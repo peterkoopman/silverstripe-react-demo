@@ -3,3 +3,12 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul[role='list'] {
+  list-style: none;
+}

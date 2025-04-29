@@ -1,6 +1,6 @@
 @import 'normalize.css';
 @import 'base/fonts.css';
 @import 'base/vars.css';
-@import 'base/body.css';
 @import 'base/typography.css';
+@import 'base/body.css';
 @import 'base/layout.css';

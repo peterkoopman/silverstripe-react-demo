@@ -19,6 +19,10 @@ class ProductController extends ContentController
 
     public function categories(HTTPRequest $request)
     {
+        if ($request->httpMethod() !== 'POST') {
+            return $this->httpError(405, 'Method Not Allowed. Use POST.');
+        }
+
         $catList = ProductFamily::get()->toNestedArray();
 
         return json_encode($catList);
@@ -26,51 +30,57 @@ class ProductController extends ContentController
 
     public function category(HTTPRequest $request)
     {
-        if ($request->isAjax()) {
-
-            $category = ProductFamily::get()
-                ->filter('Slug', $request->param('ID'))
-                ->first();
-            $name = $category->Title;
-            $groups = $category->ProductGroups()->toNestedArray();
-            return json_encode([$name, $groups]);
+        if ($request->httpMethod() !== 'POST') {
+            return $this->httpError(405, 'Method Not Allowed. Use POST.');
         }
+
+        $category = ProductFamily::get()
+            ->filter('Slug', $request->param('ID'))
+            ->first();
+
+        $name = $category->Title;
+        $groups = $category->ProductGroups()->toNestedArray();
+        return json_encode([$name, $groups]);
     }
 
     public function group(HTTPRequest $request)
     {
-        if ($request->isAjax()) {
-            $group = ProductGroup::get()
-                ->filter('Slug', $request->param('ID'))
-                ->first();
-            $name = $group->Title;
-            $products = $group->Products()
-                ->toNestedArray();
-
-            $path = 'https://hydraulink.co.nz/static/product_images/';
-
-            for ($i = 0; $i < count($products); $i++) {
-                $products[$i]['ImageFilename'] = $path . $products[$i]['ImageFilename'];
-            }
-
-            return json_encode([$name, $products]);
+        if ($request->httpMethod() !== 'POST') {
+            return $this->httpError(405, 'Method Not Allowed. Use POST.');
         }
+
+        $group = ProductGroup::get()
+            ->filter('Slug', $request->param('ID'))
+            ->first();
+        $name = $group->Title;
+        $products = $group->Products()
+            ->toNestedArray();
+
+        $path = 'https://hydraulink.co.nz/static/product_images/';
+
+        for ($i = 0; $i < count($products); $i++) {
+            $products[$i]['ImageFilename'] = $path . $products[$i]['ImageFilename'];
+        }
+
+        return json_encode([$name, $products]);
     }
 
     public function product(HTTPRequest $request)
     {
-        if ($request->isAjax()) {
-            $product = Product::get()->filter('Slug', $request->param('ID'))->first();
-
-            return json_encode([
-                'template' => strval($product->renderWith('Hydraulink/Ajax/Product')),
-                'breadcrumbs' => [
-                    $product->ProductGroup()->ProductFamily()->Title,
-                    $product->ProductGroup()->Title,
-                    $product->Title
-                ]
-            ]);
+        if ($request->httpMethod() !== 'POST') {
+            return $this->httpError(405, 'Method Not Allowed. Use POST.');
         }
+
+        $product = Product::get()->filter('Slug', $request->param('ID'))->first();
+
+        return json_encode([
+            'template' => strval($product->renderWith('Hydraulink/Ajax/Product')),
+            'breadcrumbs' => [
+                $product->ProductGroup()->ProductFamily()->Title,
+                $product->ProductGroup()->Title,
+                $product->Title
+            ]
+        ]);
     }
 
     public function promos()

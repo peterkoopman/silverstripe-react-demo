@@ -6,7 +6,7 @@ import style from './Button.module.css';
 const Button = ({ route, name }) => {
   return (
     <>
-      <li className={style.products__button}>
+      <li className={style.button}>
         <NavLink exact to={'/products/' + route}>
           {name}
         </NavLink>

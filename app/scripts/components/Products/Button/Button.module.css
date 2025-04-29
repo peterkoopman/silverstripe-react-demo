@@ -1,4 +1,4 @@
-.products__button {
+.button {
   width: 32.3%;
   height: 65px;
   margin: 0 0.5% 13px;
@@ -10,11 +10,11 @@
   cursor: pointer;
 }
 
-.products__button:first-child {
+.button:first-child {
   margin-left: 0.5%;
 }
 
-.products__button a {
+.button a {
   display: flex;
   justify-content: center;
   align-items: center;

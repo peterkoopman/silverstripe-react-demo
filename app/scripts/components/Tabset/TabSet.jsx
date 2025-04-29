@@ -1,7 +1,7 @@
 import React from 'react';
 import Tab from '../tab/Tab';
 
-import style from './TabSet.module.css';
+import * as styles from './TabSet.module.css';
 
 class TabSet extends React.Component {
   tabs = [
@@ -31,7 +31,7 @@ class TabSet extends React.Component {
     return (
       <>
         <div>
-          <ul className={style.product__tabs}>
+          <ul className={styles.productTabs}>
             {this.tabs.map((tab, index) => (
               <Tab key={index} slug={tab.slug} name={tab.name} />
             ))}
