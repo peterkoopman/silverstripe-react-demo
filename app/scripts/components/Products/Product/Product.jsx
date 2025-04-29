@@ -5,12 +5,12 @@ import style from './Product.module.css';
 const Product = ({ image, code, title }) => {
   return (
     <>
-      <li className="product">
+      <li className={style.product}>
         <div
-          className="product--image"
+          className={style.productImage}
           style={{ backgroundImage: `url(${image})` }}
         />
-        <div className="product--title">
+        <div className={style.productTitle}>
           <p>{code}</p>
           <p>{title}</p>
         </div>

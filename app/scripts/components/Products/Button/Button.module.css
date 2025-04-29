@@ -1,17 +1,12 @@
 .button {
   width: 32.3%;
   height: 65px;
-  margin: 0 0.5% 13px;
   font-weight: 700;
   background-color: #ffe200;
   color: #000;
   border-radius: 4px;
   text-transform: uppercase;
   cursor: pointer;
-}
-
-.button:first-child {
-  margin-left: 0.5%;
 }
 
 .button a {

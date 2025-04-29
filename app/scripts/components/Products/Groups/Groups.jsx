@@ -63,27 +63,31 @@ const Groups = () => {
   };
 
   return (
-    <section className={groups}>
-      <ul className={style.groups__list} role="list">
-        {groups.map((group, index) => (
-          <Button
-            key={index}
-            route={`${family}/${group.Slug}`}
-            name={group.Title}
-          />
-        ))}
-      </ul>
-      <ul className="products__list" role="list">
-        {products.map((product, index) => (
-          <Product
-            key={index}
-            image={product.ImageFilename}
-            code={product.Code}
-            title={product.Title}
-          />
-        ))}
-      </ul>
-    </section>
+    <>
+      <section className={style.groups}>
+        <ul className={style.list} role="list">
+          {groups.map((group, index) => (
+            <Button
+              key={index}
+              route={`${family}/${group.Slug}`}
+              name={group.Title}
+            />
+          ))}
+        </ul>
+      </section>
+      <section className={style.products}>
+        <ul className={style.productList} role="list">
+          {products.map((product, index) => (
+            <Product
+              key={index}
+              image={product.ImageFilename}
+              code={product.Code}
+              title={product.Title}
+            />
+          ))}
+        </ul>
+      </section>
+    </>
   );
 };
 

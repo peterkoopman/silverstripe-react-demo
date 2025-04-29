@@ -1,0 +1,6 @@
+header {
+  background-color: var(--dark-grey);
+  padding: 2rem 0;
+  border-bottom: solid 8px var(--brand);
+  color: var(--white);
+}
