@@ -9,6 +9,7 @@ ul {
   padding: 0;
 }
 
-ul[role='list'] {
+ul[role='list'],
+li[role='listitem'] {
   list-style: none;
 }
