@@ -1,45 +1,26 @@
 import React from 'react';
-import Tab from '../tab/Tab';
 
 import * as styles from './TabSet.module.css';
 
-class TabSet extends React.Component {
-  tabs = [
-    {
-      slug: '',
-      name: 'Product Catalogue',
-    },
-    {
-      slug: 'promos',
-      name: 'Promotions',
-    },
-    {
-      slug: 'agencies',
-      name: 'Agencies',
-    },
-    {
-      slug: 'quality',
-      name: 'Quality',
-    },
-    {
-      slug: 'datasheets',
-      name: 'Datasheets',
-    },
-  ];
-
-  render() {
-    return (
-      <>
-        <div>
-          <ul className={styles.productTabs}>
-            {this.tabs.map((tab, index) => (
-              <Tab key={index} slug={tab.slug} name={tab.name} />
-            ))}
-          </ul>
-        </div>
-      </>
-    );
-  }
-}
+const TabSet = ({ children }) => {
+  const slugsArray = children.map((child) => {
+    if (React.isValidElement(child)) {
+      return child.props.slug;
+    }
+  });
+  const childrenWithProp = React.Children.map(children, (child) => {
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child, { ...child.props, slugs: slugsArray });
+    }
+    return child; // Return non-element children as they are
+  });
+  return (
+    <>
+      <div>
+        <ul className={styles.productTabs}>{childrenWithProp}</ul>
+      </div>
+    </>
+  );
+};
 
 export default TabSet;

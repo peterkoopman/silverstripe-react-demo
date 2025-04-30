@@ -1,21 +1,26 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import style from './Tab.module.css';
 
-function Tab(props) {
+const Tab = ({ slug, name, slugs }) => {
+  const path = useLocation().pathname.split('/');
+  const currentSlug = path[path.length - 1];
+  let isActive = false;
+  !slugs.includes(currentSlug) && !slug
+    ? (isActive = true)
+    : (isActive = currentSlug === slug);
+
   return (
-    <>
-      <li className={style.tab}>
-        <NavLink
-          exact
-          to={'/products/' + props.slug}
-          activeClassName="selected">
-          {props.name}
-        </NavLink>
-      </li>
-    </>
+    <li className={style.tab}>
+      <NavLink
+        exact
+        to={`/products/${slug}`}
+        className={`${style.link} ${isActive ? style.selected : ''}`}>
+        {name}
+      </NavLink>
+    </li>
   );
-}
+};
 
 export default Tab;

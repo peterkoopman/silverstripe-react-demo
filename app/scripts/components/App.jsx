@@ -9,13 +9,20 @@ import Quality from './Pages/Quality/Quality';
 import Datasheets from './Pages/Datasheets/Datasheets';
 import Groups from './Products/Groups/Groups';
 import Families from './Products/Families/Families';
+import Tab from './Tab/Tab';
 
 const App = () => {
   return (
     <>
       <Blurb />
       <BrowserRouter>
-        <TabSet />
+        <TabSet>
+          <Tab slug="" name="Products" />
+          <Tab slug="promos" name="Promos" />
+          <Tab slug="agencies" name="Agencies" />
+          <Tab slug="quality" name="Quality" />
+          <Tab slug="datasheets" name="Datasheets" />
+        </TabSet>
         <Routes>
           <Route exact path="/products/promos" element={<Promos />} />
           <Route exact path="/products/agencies" element={<Agencies />} />
