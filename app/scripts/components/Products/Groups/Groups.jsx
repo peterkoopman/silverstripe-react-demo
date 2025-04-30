@@ -11,22 +11,20 @@ const Groups = () => {
   const [groups, setGroups] = useState([]);
   const [products, setProducts] = useState([]);
   const [groupName, setGroupName] = useState('');
-  const [productTab, setProductTab] = useState();
 
   useEffect(() => {
+    console.log(family, group);
     if (group) {
       getProducts();
-    } else if (family) {
+    } else {
+      setGroups([]);
+      setProducts([]);
+      setGroupName('');
+    }
+    if (family) {
       getGroups();
     }
   }, [family, group]);
-
-  // useEffect(() => {
-  //   setProductTab(
-  //     document.querySelector('.product__tabs--tablist > li:first-child > a'),
-  //   );
-  //   productTab.classList.add('selected');
-  // }, [family]);
 
   const getGroups = () => {
     const url = `/api/products/category/${family}`;
@@ -39,6 +37,7 @@ const Groups = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        setGroupName(data[0]);
         setGroups(data[1]);
       });
   };
@@ -56,15 +55,13 @@ const Groups = () => {
       .then((data) => {
         setGroupName(data[0]);
         setProducts(data[1]);
-        setTimeout(() => {
-          setUpdateProducts(true);
-        }, 800);
       });
   };
 
   return (
     <>
       <section className={style.groups}>
+        <h2>{groupName}</h2>
         <ul className={style.list} role="list">
           {groups.map((group, index) => (
             <Button
@@ -75,18 +72,20 @@ const Groups = () => {
           ))}
         </ul>
       </section>
-      <section className={style.products}>
-        <ul className={style.productList} role="list">
-          {products.map((product, index) => (
-            <Product
-              key={index}
-              image={product.ImageFilename}
-              code={product.Code}
-              title={product.Title}
-            />
-          ))}
-        </ul>
-      </section>
+      {products.length > 0 && (
+        <section className={style.products}>
+          <ul className={style.productList} role="list">
+            {products.map((product, index) => (
+              <Product
+                key={index}
+                image={product.ImageFilename}
+                code={product.Code}
+                title={product.Title}
+              />
+            ))}
+          </ul>
+        </section>
+      )}
     </>
   );
 };

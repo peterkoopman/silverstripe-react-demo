@@ -14,7 +14,7 @@
   margin-right: 0;
 }
 
-.tab a {
+.link {
   color: #000;
   background-color: #ffe200;
   line-height: 2.75rem;
@@ -25,7 +25,7 @@
   display: block;
   width: 100%;
 }
-.tab a.selected {
+.selected {
   background-color: #000;
   color: #fff;
 }

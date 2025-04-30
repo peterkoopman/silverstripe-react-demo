@@ -1,0 +1,13 @@
+.crumb {
+  text-decoration: none;
+}
+
+.crumb::after {
+  content: '>';
+  margin: 0 1em;
+  font-weight: bold;
+}
+
+.crumb:last-child::after {
+  content: '';
+}
