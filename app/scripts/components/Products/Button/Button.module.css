@@ -19,3 +19,11 @@
   width: 100%;
   height: 100%;
 }
+
+.button.active {
+  background-color: #000;
+}
+
+.button.active a {
+  color: #fff;
+}

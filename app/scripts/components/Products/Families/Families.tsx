@@ -3,7 +3,9 @@ import Button from '../Button/Button';
 import style from './Families.module.css';
 
 const Families = () => {
-  const [families, setFamilies] = useState([]);
+  const [families, setFamilies] = useState<{ Slug: string; Title: string }[]>(
+    [],
+  );
 
   useEffect(() => {
     getFamilies();

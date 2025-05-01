@@ -1,7 +1,12 @@
 import { Link } from 'react-router';
 import style from './Crumb.module.css';
 
-const Crumb = ({ url, name }) => {
+interface CrumbProps {
+  url: string;
+  name: string;
+}
+
+const Crumb = ({ url, name }: CrumbProps) => {
   return (
     <Link className={style.crumb} to={url}>
       {name}

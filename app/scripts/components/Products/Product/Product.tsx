@@ -2,7 +2,13 @@ import React from 'react';
 
 import style from './Product.module.css';
 
-const Product = ({ image, code, title }) => {
+interface ProductProps {
+  image: string;
+  code: string;
+  title: string;
+}
+
+const Product = ({ image, code, title }: ProductProps) => {
   return (
     <>
       <li className={style.product}>

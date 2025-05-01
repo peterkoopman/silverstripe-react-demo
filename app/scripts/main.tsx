@@ -3,7 +3,9 @@ import { createRoot } from 'react-dom/client';
 import App from './components/App';
 import '../styles/main.css';
 
-createRoot(document.getElementById('productapp')).render(
+const container = document.getElementById('productapp');
+
+createRoot(container!).render(
   <StrictMode>
     <App />
   </StrictMode>,
