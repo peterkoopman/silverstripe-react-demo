@@ -2,9 +2,8 @@ import { useLocation } from 'react-router-dom';
 import Crumb from '../Crumb/Crumb';
 import style from './Breadcrumbs.module.css';
 import { useContext, useState, useEffect } from 'react';
-import { PageChange, PageContext } from '../../contexts/PageContext';
 
-const generateTrail = (pathname) => {
+const generateTrail = (pathname: string) => {
   const segments = pathname.split('/').filter(Boolean);
   let path = '';
   const breadcrumbSegments = segments.map((segment, index) => {
@@ -19,7 +18,9 @@ const generateTrail = (pathname) => {
 
 const Breadcrumbs = () => {
   const location = useLocation();
-  const [segments, setSegments] = useState([]);
+  const [segments, setSegments] = useState<{ path: string; name: string }[]>(
+    [],
+  );
 
   useEffect(() => {
     setSegments(generateTrail(location.pathname));

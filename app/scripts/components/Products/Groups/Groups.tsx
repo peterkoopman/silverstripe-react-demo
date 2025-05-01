@@ -6,14 +6,24 @@ import Product from '../Product/Product';
 
 import style from './Groups.module.css';
 
+interface ProductType {
+  Code: string;
+  Title: string;
+  ImageFilename: string;
+}
+
+interface GroupType {
+  Title: string;
+  Slug: string;
+}
+
 const Groups = () => {
   const { family, group } = useParams();
-  const [groups, setGroups] = useState([]);
-  const [products, setProducts] = useState([]);
+  const [groups, setGroups] = useState<GroupType[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
   const [groupName, setGroupName] = useState('');
 
   useEffect(() => {
-    console.log(family, group);
     if (group) {
       getProducts();
     } else {
@@ -57,17 +67,18 @@ const Groups = () => {
         setProducts(data[1]);
       });
   };
-
+  console.log(groups, group);
   return (
     <>
       <section className={style.groups}>
         <h2>{groupName}</h2>
         <ul className={style.list} role="list">
-          {groups.map((group, index) => (
+          {groups.map((groupSelection, index) => (
             <Button
               key={index}
-              route={`${family}/${group.Slug}`}
-              name={group.Title}
+              route={`${family}/${groupSelection.Slug}`}
+              name={groupSelection.Title}
+              active={groupSelection.Slug === group}
             />
           ))}
         </ul>

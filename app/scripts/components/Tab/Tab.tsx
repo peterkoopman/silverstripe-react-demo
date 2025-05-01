@@ -3,7 +3,13 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 import style from './Tab.module.css';
 
-const Tab = ({ slug, name, slugs }) => {
+interface TabProps {
+  slug: string;
+  name: string;
+  slugs: string[];
+}
+
+const Tab = ({ slug, name, slugs }: TabProps) => {
   const path = useLocation().pathname.split('/');
   const currentSlug = path[path.length - 1];
   let isActive = false;
@@ -14,7 +20,6 @@ const Tab = ({ slug, name, slugs }) => {
   return (
     <li className={style.tab}>
       <NavLink
-        exact
         to={`/products/${slug}`}
         className={`${style.link} ${isActive ? style.selected : ''}`}>
         {name}
