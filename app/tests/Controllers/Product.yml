@@ -1,0 +1,49 @@
+ProductApp\Models\ProductFamily:
+  family1:
+    Index: 1
+    Title: 'Family 1'
+    Slug: 'family-1'
+  family2:
+    Index: 2
+    Title: 'Family 2'
+    Slug: 'family-2'
+  family3:
+    Index: 3
+    Title: 'Family 3'
+    Slug: 'family-3'
+
+ProductApp\Models\ProductGroup:
+  group1:
+    Index: 1
+    Title: 'Group 1'
+    Slug: 'group-1'
+    ProductFamily: '=>ProductApp\Models\ProductFamily.family1'
+  group2:
+    Index: 2
+    Title: 'Group 2'
+    Slug: 'group-2'
+    ProductFamily: '=>ProductApp\Models\ProductFamily.family2'
+  group3:
+    Index: 3
+    Title: 'Group 3'
+    Slug: 'group-3'
+    ProductFamily: '=>ProductApp\Models\ProductFamily.family3'
+
+
+ProductApp\Models\Product:
+  product1:
+    Index: 1
+    Title: 'Product 1'
+    Slug: 'product-1'
+    ProductGroup: '=>ProductApp\Models\ProductGroup.group1'
+  product2:
+    Index: 2
+    Title: 'product 2'
+    Slug: 'product-2'
+    ProductGroup: '=>ProductApp\Models\ProductGroup.group2'
+  product3:
+    Index: 3
+    Title: 'product 3'
+    Slug: 'product-3'
+    ProductGroup: '=>ProductApp\Models\ProductGroup.group3'
+

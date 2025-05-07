@@ -4,8 +4,11 @@ namespace ProductApp\Controllers;
 
 use ProductApp\Models\Product;
 use ProductApp\Models\ProductGroup;
+use SilverStripe\Admin\LeftAndMain;
 use ProductApp\Models\ProductFamily;
+
 use SilverStripe\Control\HTTPRequest;
+use SilverStripe\Control\HTTPResponse;
 use SilverStripe\CMS\Controllers\ContentController;
 
 class ProductController extends ContentController
@@ -17,21 +20,27 @@ class ProductController extends ContentController
         'product'
     ];
 
+    private function returnConfig($returnArray)
+    {
+        return (new HTTPResponse(json_encode($returnArray)))
+            ->addHeader('Content-Type', 'application/json; charset=utf-8');
+    }
+
     public function categories(HTTPRequest $request)
     {
-        if ($request->httpMethod() !== 'POST') {
-            return $this->httpError(405, 'Method Not Allowed. Use POST.');
+        if ($request->httpMethod() !== 'GET') {
+            return $this->httpError(405, 'Method Not Allowed. Use GET.');
         }
 
-        $catList = ProductFamily::get()->toNestedArray();
+        $productFamily = ProductFamily::get()->toNestedArray();
 
-        return json_encode($catList);
+        return $this->returnConfig($productFamily);
     }
 
     public function category(HTTPRequest $request)
     {
-        if ($request->httpMethod() !== 'POST') {
-            return $this->httpError(405, 'Method Not Allowed. Use POST.');
+        if ($request->httpMethod() !== 'GET') {
+            return $this->httpError(405, 'Method Not Allowed. Use GET.');
         }
 
         $category = ProductFamily::get()
@@ -40,13 +49,13 @@ class ProductController extends ContentController
 
         $name = $category->Title;
         $groups = $category->ProductGroups()->toNestedArray();
-        return json_encode([$name, $groups]);
+        return $this->returnConfig(['Name' => $name, 'Groups' => $groups]);
     }
 
     public function group(HTTPRequest $request)
     {
-        if ($request->httpMethod() !== 'POST') {
-            return $this->httpError(405, 'Method Not Allowed. Use POST.');
+        if ($request->httpMethod() !== 'GET') {
+            return $this->httpError(405, 'Method Not Allowed. Use GET.');
         }
 
         $group = ProductGroup::get()
@@ -62,25 +71,32 @@ class ProductController extends ContentController
             $products[$i]['ImageFilename'] = $path . $products[$i]['ImageFilename'];
         }
 
-        return json_encode([$name, $products]);
+        return $this->returnConfig(['Name' => $name, 'Products' => $products]);
     }
 
     public function product(HTTPRequest $request)
     {
-        if ($request->httpMethod() !== 'POST') {
-            return $this->httpError(405, 'Method Not Allowed. Use POST.');
+        if ($request->httpMethod() !== 'GET') {
+            return $this->httpError(405, 'Method Not Allowed. Use GET.');
         }
 
-        $product = Product::get()->filter('Slug', $request->param('ID'))->first();
+        $product = Product::get()->filter('Slug', $request->param('ID'))->toNestedArray()[0];
 
-        return json_encode([
-            'template' => strval($product->renderWith('Hydraulink/Ajax/Product')),
-            'breadcrumbs' => [
-                $product->ProductGroup()->ProductFamily()->Title,
-                $product->ProductGroup()->Title,
-                $product->Title
-            ]
-        ]);
+        $path = 'https://hydraulink.co.nz/static/product_images/';
+
+        $product['ImageFilename'] = $path . $product['ImageFilename'];
+        if ($product['Notes']) {
+            $notes = explode("|", $product['Notes']);
+            $notesList = '<ul>';
+            foreach ($notes as $k => $v) {
+                $notesList .= "<li>$v</li>";
+            }
+            $notesList .= '</ul>';
+            $product['Description'] = $product['Description'] . $notesList;
+        }
+
+
+        return $this->returnConfig($product);
     }
 
     public function promos()
@@ -93,7 +109,7 @@ class ProductController extends ContentController
             $content
         ];
 
-        return json_encode($array);
+        return $this->returnConfig($array);
     }
 
     public function agencies()
@@ -106,7 +122,7 @@ class ProductController extends ContentController
             $content
         ];
 
-        return json_encode($array);
+        return $this->returnConfig($array);
     }
 
     public function quality()
@@ -119,7 +135,7 @@ class ProductController extends ContentController
             $content
         ];
 
-        return json_encode($array);
+        return $this->returnConfig($array);
     }
     public function datasheets()
     {
@@ -131,6 +147,6 @@ class ProductController extends ContentController
             $content
         ];
 
-        return json_encode($array);
+        return $this->returnConfig($array);
     }
 }
