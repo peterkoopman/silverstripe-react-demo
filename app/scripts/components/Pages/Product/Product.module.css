@@ -1,0 +1,33 @@
+.product {
+  margin-top: 2rem;
+}
+
+.productContent {
+  display: flex;
+  gap: 1rem;
+}
+
+.productImage {
+  width: 50%;
+  align-self: center;
+}
+
+.productImage img {
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+}
+
+.productInfo {
+  min-width: 50%;
+}
+
+.productDescription ul {
+  margin-top: 1rem;
+  list-style: square inside;
+}
+
+.productDescription ul li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}

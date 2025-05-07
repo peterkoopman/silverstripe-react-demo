@@ -8,6 +8,7 @@ import Promos from './Pages/Promos/Promos';
 import Agencies from './Pages/Agencies/Agencies';
 import Quality from './Pages/Quality/Quality';
 import Datasheets from './Pages/Datasheets/Datasheets';
+import Product from './Pages/Product/Product';
 import Groups from './Products/Groups/Groups';
 import Families from './Products/Families/Families';
 import Tab from './Tab/Tab';
@@ -30,6 +31,10 @@ const App = () => {
           <Route path="/products/agencies" element={<Agencies />} />
           <Route path="/products/quality" element={<Quality />} />
           <Route path="/products/datasheets" element={<Datasheets />} />
+          <Route
+            path="/products/:family/:group/:product"
+            element={<Product />}
+          />
           <Route path="/products/:family/:group" element={<Groups />} />
           <Route path="/products/:family" element={<Groups />} />
           <Route path="/products" element={<Families />} />

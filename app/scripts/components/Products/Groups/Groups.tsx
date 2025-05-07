@@ -10,6 +10,7 @@ interface ProductType {
   Code: string;
   Title: string;
   ImageFilename: string;
+  Slug: string;
 }
 
 interface GroupType {
@@ -39,7 +40,7 @@ const Groups = () => {
   const getGroups = () => {
     const url = `/api/products/category/${family}`;
     fetch(url, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'x-requested-with': 'XMLHttpRequest',
@@ -47,15 +48,15 @@ const Groups = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setGroupName(data[0]);
-        setGroups(data[1]);
+        setGroupName(data.Name);
+        setGroups(data.Groups);
       });
   };
 
   const getProducts = () => {
     const url = `/api/products/group/${group}`;
     fetch(url, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'x-requested-with': 'XMLHttpRequest',
@@ -63,11 +64,11 @@ const Groups = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setGroupName(data[0]);
-        setProducts(data[1]);
+        setGroupName(data.Name);
+        setProducts(data.Products);
       });
   };
-  console.log(groups, group);
+
   return (
     <>
       <section className={style.groups}>
@@ -92,6 +93,7 @@ const Groups = () => {
                 image={product.ImageFilename}
                 code={product.Code}
                 title={product.Title}
+                link={`/products/${family}/${group}/${product.Slug}`}
               />
             ))}
           </ul>

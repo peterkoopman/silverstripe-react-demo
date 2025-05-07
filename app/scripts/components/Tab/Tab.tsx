@@ -6,7 +6,7 @@ import style from './Tab.module.css';
 interface TabProps {
   slug: string;
   name: string;
-  slugs: string[];
+  slugs?: string[];
 }
 
 const Tab = ({ slug, name, slugs }: TabProps) => {

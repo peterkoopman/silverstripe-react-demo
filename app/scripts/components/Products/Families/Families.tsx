@@ -14,7 +14,7 @@ const Families = () => {
   const getFamilies = () => {
     const url = '/api/products/categories';
     fetch(url, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'x-requested-with': 'XMLHttpRequest',
@@ -31,7 +31,12 @@ const Families = () => {
       <section className={style.families}>
         <ul className={style.list} role="list">
           {families.map((family, index) => (
-            <Button key={index} route={family.Slug} name={family.Title} />
+            <Button
+              active={false}
+              key={index}
+              route={family.Slug}
+              name={family.Title}
+            />
           ))}
         </ul>
       </section>
