@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import Crumb from '../Crumb/Crumb';
 import style from './Breadcrumbs.module.css';
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const generateTrail = (pathname: string) => {
   const segments = pathname.split('/').filter(Boolean);
@@ -27,9 +27,14 @@ const Breadcrumbs = () => {
   }, [location]);
 
   return (
-    <div className={style.breadcrumbs}>
+    <div data-testid="breadcrumbs" className={style.breadcrumbs}>
       {segments.map((segment, index) => (
-        <Crumb key={index} url={segment.path} name={segment.name} />
+        <Crumb
+          data-testid="crumb"
+          key={index}
+          url={segment.path}
+          name={segment.name}
+        />
       ))}
     </div>
   );

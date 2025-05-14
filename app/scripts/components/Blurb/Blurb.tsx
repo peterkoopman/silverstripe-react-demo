@@ -5,10 +5,10 @@ const Blurb = () => {
   return (
     <section className={style.blurb}>
       <div className="container">
-        <h2 className={style.heading}>
+        <h2 data-testid="heading" className={style.heading}>
           Get the job done with the right equipment
         </h2>
-        <div className={style.summary}>
+        <div data-testid="summary" className={style.summary}>
           <p>
             With an extensive network throughout New Zealand and Australia, the
             level of expertise gained and held by Hydraulink in key industry
