@@ -1,5 +1,5 @@
 // vite.config.js
-import { defineConfig } from 'vite';
+import { defineConfig, UserConfig } from 'vite';
 import liveReload from 'vite-plugin-live-reload';
 import react from '@vitejs/plugin-react';
 import path from 'path';
@@ -44,4 +44,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'scripts'), // Optional: Alias for your frontend directory
     },
   },
-});
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './app/scripts/setup.ts',
+    css: false,
+  },
+} as UserConfig);
