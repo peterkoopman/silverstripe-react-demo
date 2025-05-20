@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
+import { fetchGroups, fetchProducts } from '../../../services/apiService';
 import Button from '../Button/Button';
 import Product from '../Product/Product';
 
@@ -25,49 +25,37 @@ const Groups = () => {
 
   useEffect(() => {
     if (group) {
-      getProducts();
+      getProducts(group);
     } else {
       setGroups([]);
       setProducts([]);
       setGroupName('');
     }
     if (family) {
-      getGroups();
+      getGroups(family);
     }
   }, [family, group]);
 
-  const getGroups = () => {
-    const url = `/api/products/category/${family}`;
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-requested-with': 'XMLHttpRequest',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setGroupName(data[0]);
-        setGroups(data[1]);
-      });
+  const getGroups = async (family: string) => {
+    try {
+      const data = await fetchGroups(family);
+      setGroupName(data[0]);
+      setGroups(data[1]);
+    } catch (error) {
+      console.error('Error fetching groups:', error);
+    }
   };
 
-  const getProducts = () => {
-    const url = `/api/products/group/${group}`;
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-requested-with': 'XMLHttpRequest',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setGroupName(data[0]);
-        setProducts(data[1]);
-      });
+  const getProducts = async (group: string) => {
+    try {
+      const data = await fetchProducts(group);
+      setGroupName(data[0]);
+      setProducts(data[1]);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
   };
-  console.log(groups, group);
+
   return (
     <>
       <section className={style.groups}>
