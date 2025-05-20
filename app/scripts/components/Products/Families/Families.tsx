@@ -28,7 +28,7 @@ const Families = () => {
 
   return (
     <>
-      <section className={style.families}>
+      <section data-testid="families" className={style.families}>
         <ul className={style.list} role="list">
           {families.map((family, index) => (
             <Button key={index} route={family.Slug} name={family.Title} />

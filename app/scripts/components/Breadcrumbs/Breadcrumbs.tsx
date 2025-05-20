@@ -27,7 +27,7 @@ const Breadcrumbs = () => {
   }, [location]);
 
   return (
-    <div className={style.breadcrumbs}>
+    <div data-testid="breadcrumbs" className={style.breadcrumbs}>
       {segments.map((segment, index) => (
         <Crumb key={index} url={segment.path} name={segment.name} />
       ))}
