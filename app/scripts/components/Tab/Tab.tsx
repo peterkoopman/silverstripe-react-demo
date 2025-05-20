@@ -6,10 +6,10 @@ import style from './Tab.module.css';
 interface TabProps {
   slug: string;
   name: string;
-  slugs: string[];
+  slugs?: string[];
 }
 
-const Tab = ({ slug, name, slugs }: TabProps) => {
+const Tab = ({ slug, name, slugs = [] }: TabProps) => {
   const path = useLocation().pathname.split('/');
   const currentSlug = path[path.length - 1];
   let isActive = false;
