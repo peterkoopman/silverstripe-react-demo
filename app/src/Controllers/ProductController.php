@@ -73,13 +73,14 @@ class ProductController extends ContentController
 
         $product = Product::get()->filter('Slug', $request->param('ID'))->first();
 
+        $path = 'https://hydraulink.co.nz/static/product_images/';
+
         return json_encode([
-            'template' => strval($product->renderWith('Hydraulink/Ajax/Product')),
-            'breadcrumbs' => [
-                $product->ProductGroup()->ProductFamily()->Title,
-                $product->ProductGroup()->Title,
-                $product->Title
-            ]
+            "title" => $product->Title,
+            "description" => $product->Description,
+            "image" => $path . $product->ImageFilename,
+            "code" => $product->Code,
+            "group" => $product->ProductGroup()->Title,
         ]);
     }
 

@@ -11,6 +11,8 @@ import Datasheets from './Pages/Datasheets/Datasheets';
 import Groups from './Products/Groups/Groups';
 import Families from './Products/Families/Families';
 import Tab from './Tab/Tab';
+import Product from './Products/Product/Product';
+import ProductPage from './Pages/Product/ProductPage';
 
 const App = () => {
   return (
@@ -31,6 +33,10 @@ const App = () => {
           <Route path="/products/quality" element={<Quality />} />
           <Route path="/products/datasheets" element={<Datasheets />} />
           <Route path="/products/:family/:group" element={<Groups />} />
+          <Route
+            path="/products/:family/:group/:product"
+            element={<ProductPage />}
+          />
           <Route path="/products/:family" element={<Groups />} />
           <Route path="/products" element={<Families />} />
         </Routes>

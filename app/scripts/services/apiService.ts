@@ -47,3 +47,18 @@ export const fetchProducts = async (group: string) => {
 
   return await response.json();
 };
+
+export const fetchProduct = async (slug: string) => {
+  const url = `/api/products/product/${slug}`;
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-requested-with': 'XMLHttpRequest',
+    },
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP Error: ${response.status}`);
+  }
+  return await response.json();
+};
