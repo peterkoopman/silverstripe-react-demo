@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import style from './Families.module.css';
-import { fetchFamilies } from '../../../services/apiService';
+import { fetchFamilies } from '@/services/apiService';
 
 const Families = () => {
   const [families, setFamilies] = useState<{ Slug: string; Title: string }[]>(

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchGroups, fetchProducts } from '../../../services/apiService';
+import { fetchGroups, fetchProducts } from '@/services/apiService';
 import Button from '../Button/Button';
 import Product from '../Product/Product';
+import { Link } from 'react-router-dom';
 
 import style from './Groups.module.css';
 
@@ -10,6 +11,7 @@ interface ProductType {
   Code: string;
   Title: string;
   ImageFilename: string;
+  Slug: string;
 }
 
 interface GroupType {
@@ -22,6 +24,7 @@ const Groups = () => {
   const [groups, setGroups] = useState<GroupType[]>([]);
   const [products, setProducts] = useState<ProductType[]>([]);
   const [groupName, setGroupName] = useState('');
+  const [groupSelection, setGroupSelection] = useState<GroupType | null>(null);
 
   useEffect(() => {
     if (group) {
@@ -80,6 +83,7 @@ const Groups = () => {
                 image={product.ImageFilename}
                 code={product.Code}
                 title={product.Title}
+                link={`/products/${family}/${group}/${product.Slug}`}
               />
             ))}
           </ul>

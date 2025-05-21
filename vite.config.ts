@@ -41,7 +41,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'scripts'), // Optional: Alias for your frontend directory
+      '@': path.resolve(__dirname, 'app/scripts'), // Optional: Alias for your frontend directory
     },
   },
   test: {

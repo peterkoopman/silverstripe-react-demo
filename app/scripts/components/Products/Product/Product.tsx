@@ -1,17 +1,19 @@
 import React from 'react';
 
 import style from './Product.module.css';
+import { Link } from 'react-router';
 
 interface ProductProps {
   image: string;
   code: string;
   title: string;
+  link: string;
 }
 
-const Product = ({ image, code, title }: ProductProps) => {
+const Product = ({ image, code, title, link }: ProductProps) => {
   return (
-    <>
-      <li className={style.product}>
+    <Link className={style.product} to={link}>
+      <li>
         <div
           className={style.productImage}
           style={{ backgroundImage: `url(${image})` }}
@@ -21,7 +23,7 @@ const Product = ({ image, code, title }: ProductProps) => {
           <p>{title}</p>
         </div>
       </li>
-    </>
+    </Link>
   );
 };
 
