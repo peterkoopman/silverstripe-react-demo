@@ -1,11 +1,6 @@
 import Blurb from './Blurb';
 import React from 'react';
-import { render, screen, cleanup } from '@testing-library/react';
-import '@testing-library/jest-dom';
-
-afterEach(() => {
-  cleanup();
-});
+import { render, screen } from '@testing-library/react';
 
 describe('Blurb component', () => {
   test('renders heading', () => {

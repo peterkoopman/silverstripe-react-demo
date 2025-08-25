@@ -1,34 +1,26 @@
-## Overview
+# Silverstripe/React POC
+This is a proof of concept for an integration of React into Silverstripe.
 
-[![CI](https://github.com/silverstripe/silverstripe-installer/actions/workflows/ci.yml/badge.svg)](https://github.com/silverstripe/silverstripe-installer/actions/workflows/ci.yml)
-[![Silverstripe supported module](https://img.shields.io/badge/silverstripe-supported-0071C4.svg)](https://www.silverstripe.org/software/addons/silverstripe-commercially-supported-module-list/)
+## Running the project
+Add a `.env` file in the root as follows
 
-Base project folder for a Silverstripe ([http://silverstripe.org](http://silverstripe.org)) installation. Required modules are installed via [http://github.com/silverstripe/recipe-cms](http://github.com/silverstripe/recipe-cms). For information on how to change the dependencies in a recipe, please have a look at [https://github.com/silverstripe/recipe-plugin](https://github.com/silverstripe/recipe-plugin). In addition, installer includes [theme/simple](https://github.com/silverstripe-themes/silverstripe-simple) as a default theme.
+```
+# DB credentials
+SS_DATABASE_CLASS="MySQLDatabase"
+SS_DATABASE_SERVER="db"
+SS_DATABASE_USERNAME="root"
+SS_DATABASE_PASSWORD="root"
+SS_DATABASE_NAME="products_app_db"
 
-## Installation
-
-```sh
-composer create-project silverstripe/installer my-app
+SS_ENVIRONMENT_TYPE="dev"
+SS_DEFAULT_ADMIN_USERNAME="admin"
+SS_DEFAULT_ADMIN_PASSWORD="password"
 ```
 
-See [Getting Started](https://docs.silverstripe.org/en/getting_started/) for more information.
+Run `docker compose up -d` 
 
-## Bugtracker
+Run `yarn build`
 
-Bugs are tracked on github.com ([framework issues](https://github.com/silverstripe/silverstripe-framework/issues),
-[cms issues](https://github.com/silverstripe/silverstripe-cms/issues)).
-Please read our [issue reporting guidelines](https://docs.silverstripe.org/en/contributing/issues_and_bugs/).
+Go to `localhost:8000/dev/build` in the browser (Email: admin, Password: password)
 
-## Development and Contribution
 
-If you would like to make changes to the Silverstripe core codebase, we have an extensive [guide to contributing code](https://docs.silverstripe.org/en/contributing/code/).
-
-## Links
-
- * [Changelogs](https://docs.silverstripe.org/en/changelogs/)
- * [Bugtracker: Framework](https://github.com/silverstripe/silverstripe-framework/issues)
- * [Bugtracker: CMS](https://github.com/silverstripe/silverstripe-cms/issues)
- * [Bugtracker: Installer](https://github.com/silverstripe/silverstripe-installer/issues)
- * [Forums](http://silverstripe.org/forums)
- * [Developer Mailinglist](https://groups.google.com/forum/#!forum/silverstripe-dev)
- * [License](./LICENSE)

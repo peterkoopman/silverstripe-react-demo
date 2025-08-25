@@ -84,19 +84,13 @@ class ProductController extends ContentController
 
         $path = 'https://hydraulink.co.nz/static/product_images/';
 
-        $product['ImageFilename'] = $path . $product['ImageFilename'];
-        if ($product['Notes']) {
-            $notes = explode("|", $product['Notes']);
-            $notesList = '<ul>';
-            foreach ($notes as $k => $v) {
-                $notesList .= "<li>$v</li>";
-            }
-            $notesList .= '</ul>';
-            $product['Description'] = $product['Description'] . $notesList;
-        }
-
-
-        return $this->returnConfig($product);
+        return json_encode([
+            "title" => $product->Title,
+            "description" => $product->Description,
+            "image" => $path . $product->ImageFilename,
+            "code" => $product->Code,
+            "group" => $product->ProductGroup()->Title,
+        ]);
     }
 
     public function promos()

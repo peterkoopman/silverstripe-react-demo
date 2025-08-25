@@ -9,7 +9,7 @@ interface TabProps {
   slugs?: string[];
 }
 
-const Tab = ({ slug, name, slugs }: TabProps) => {
+const Tab = ({ slug, name, slugs = [] }: TabProps) => {
   const path = useLocation().pathname.split('/');
   const currentSlug = path[path.length - 1];
   let isActive = false;

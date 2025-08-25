@@ -12,7 +12,7 @@
 /.graphql-generated
 
 # ignore docker data volume & php.ini
-/.docker/
+# /.docker/
 
 /vendor/
 
