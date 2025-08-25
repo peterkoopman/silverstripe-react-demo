@@ -2,6 +2,8 @@
 This is a proof of concept for an integration of React into Silverstripe.
 
 ## Running the project
+Use the `dev` branch of the repo.
+
 Add a `.env` file in the root as follows
 
 ```
