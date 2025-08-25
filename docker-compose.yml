@@ -1,0 +1,39 @@
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: scribbledesign/products_app
+    ports:
+      - '8000:80'
+    volumes:
+      - './:/var/www/html'
+    container_name: products_app_app
+    restart: unless-stopped
+
+  db: 
+    image: mariadb:11.7.2
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: products_app_db
+    container_name: products_app_db
+    volumes: 
+      - ./.docker/data:/var/lib/mysql
+
+  dbadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    environment:
+     - PMA_ARBITRARY=1
+     - PMA_HOST=db
+     - UPLOAD_LIMIT=128M
+    restart: always
+    ports:
+     - 8081:80
+
+volumes:
+  app:
+  data:
+    driver: local
